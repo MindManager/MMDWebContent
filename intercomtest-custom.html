@@ -1,0 +1,135 @@
+<!DOCTYPE html
+<html>
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>Untitled Document</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+"use strict";
+
+function Gadget() {
+    var name = "ipod";
+
+    this.getName = function () {
+        return name;
+    }
+};
+
+Gadget.prototype = (function() {
+    var browser = "webkit"; // private
+    return {
+        getBrowser: function() {
+            return browser;
+        },
+        setBrowser: function(browserName) {
+            browser = browserName;
+        }
+    };
+}());
+
+var g1 = new Gadget();
+var g2 = new Gadget();
+
+g1.setBrowser("test");
+console.log(g2.getBrowser());
+
+
+(function() {
+    var launcherInterval = setInterval(function() {
+        var launcher = $('#intercom-launcher');
+        if (launcher) {
+            if (launcher.hasClass('intercom-launcher-active')) {
+                launcher.click();
+            } else if (launcher.hasClass('intercom-launcher-inactive')){
+                window.clearInterval(launcherInterval);
+            }
+        }
+    }, 200);
+
+    // Right now we don't clear these intervals because the buttons are
+    // often shown again by intercom. In the future we could try to improve this
+    setInterval(hideClose, 200);
+    setInterval(hideMinimize, 200);
+
+    function hideClose() {
+        return hideButton(".intercom-sheet-header-close-button");
+    }
+
+    function hideMinimize() {
+        return hideButton(".intercom-sheet-header-minimize-button");
+    }
+
+    function hideButton(buttonClass) {
+        var hidButton = false;
+        var button = $(buttonClass);
+        if (button) {
+            if ($(button).is(":visible")) {
+                button.hide();
+                hidButton = true;
+            }
+        }
+
+        return hidButton;
+    }
+})();
+
+</script>
+<style>
+body{
+	margin:0px;
+}
+.close-button{
+	display:none !important;
+}
+.intercom-sheet-body{
+	border:none !important;
+	/*top:30px !important;*/
+}
+
+.buttonstyle{
+
+padding: 2px 12px;
+font-weight: 400;
+font-size: 14px;
+line-height: 30px;
+-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+border-radius: 3px;
+-webkit-box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.11);
+box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.11);
+background: #e41115;
+background-image: -webkit-linear-gradient(-90deg, #f82529, #e41115);
+background-image: linear-gradient(to bottom, #f82529, #e41115);
+text-shadow: 0 -1px rgba(0, 0, 0, 0.2);
+text-decoration: none;
+font-size: 14px;
+line-height: 25px;
+padding: 0 9px;
+display: inline-block;
+color: white;
+border: 1px solid #d00001;
+font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+alignment-baseline: baseline;
+text-align:center;
+}
+</style>
+    <script>
+        window.intercomSettings = {
+            // TODO: The current logged in user's full name
+            name: "mjic46@mailinator.com",
+            // TODO: The current logged in user's email address.
+            email: "mjic46@mailinator.com",
+            // TODO: The current logged in user's sign-up date as a Unix timestamp.
+            user_hash: "1da524dd9c4df9d9dd0a90e255907c3aeb0760a76c4c079626817b463d257a6c",
+            app_id: "ly0bndk6"
+        };
+    </script>
+</head>
+
+<body id="mybody" >
+<script>(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',intercomSettings);}else{var d=document;var i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};w.Intercom=i;function l(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/ly0bndk6';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})()</script>
+
+
+</body>
+</html>
